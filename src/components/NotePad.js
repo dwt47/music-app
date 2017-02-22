@@ -1,22 +1,43 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Synth from '../external/AudioSynth';
 
 import * as actions from '../actions';
+import Note from './Note';
 
 class NotePad extends Component {
+	constructor(props) {
+		super(props);
+
+		this.piano = Synth.createInstrument('piano');
+	}
+
+	getScale() {
+		return [
+			['C', 4, 1],
+			['B', 3, 1],
+			['A', 3, 1],
+			['G', 3, 1],
+			['F', 3, 1],
+			['E', 3, 1],
+			['D', 3, 1],
+			['C', 3, 1],
+		];
+	}
+
 	onClickNote(position) {
 		this.props.toggleNote(position);
 	}
 
 	renderNote(isSelected, isActive, position) {
-		const className = `note-pad__note ${isSelected ? 'selected' : ''} ${isActive ? 'active' : ''}`;
-		return (
-			<li 
-				key={position.row}
-				className={className}
-				onClick={this.onClickNote.bind(this, position)}
-			/>
-		);
+		return <Note 
+			selected={isSelected} 
+			playing={isActive}
+			key={position.row}
+			note={this.getScale()[position.row]}
+			piano={this.piano}
+			onClick={this.onClickNote.bind(this, position)}
+		/>
 	}
 
 	renderCols() {

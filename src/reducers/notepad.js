@@ -1,5 +1,6 @@
 import {
-	TOGGLE_NOTE
+	TOGGLE_NOTE,
+	CLEAR_NOTES,
 } from '../actions/types';
 
 export default function(state = [], action) {
@@ -19,6 +20,9 @@ export default function(state = [], action) {
 
 				return col;
 			});
+		case CLEAR_NOTES:
+			// de-select everything
+			return state.map(col => col.map(val => false));
 	}
 	
 	return state;

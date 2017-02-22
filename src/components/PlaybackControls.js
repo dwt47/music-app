@@ -41,6 +41,10 @@ class PlaybackControls extends Component {
 		}
 	}
 
+	clear() {
+		this.props.clearAllNotes();
+	}
+
 	setTempo(e) {
 		e.preventDefault();
 
@@ -65,7 +69,8 @@ class PlaybackControls extends Component {
 			<div className="playback-controls">
 				<div className="playback-buttons">
 					<button onClick={this.play.bind(this)} className="play">PLAY</button>
-					<button onClick={this.stop.bind(this)} className="STOP">STOP</button>
+					<button onClick={this.stop.bind(this)} className="stop">STOP</button>
+					<button onClick={this.clear.bind(this)} className="clear">CLEAR</button>
 					<form onSubmit={this.setTempo.bind(this)}>
 						<label>Tempo:</label>
 						<input 

@@ -4,6 +4,7 @@ import {
 	STOP_PLAYBACK,
 	NEXT_BEAT,
 	SET_TEMPO,
+	CLEAR_NOTES,
 } from './types';
 
 export function toggleNote({row, col}) {
@@ -35,5 +36,11 @@ export function setTempo(newTempo) {
 	return {
 		type: SET_TEMPO,
 		payload: newTempo,
+	};
+}
+
+export function clearAllNotes() {
+	return {
+		type: CLEAR_NOTES,
 	};
 }
